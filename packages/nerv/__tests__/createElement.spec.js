@@ -29,9 +29,4 @@ describe('test create real dom tree from virtual dom tree', () => {
       createElement({})
     }).toThrowError('Unsupported VNode.')
   })
-
-  it('should create document Fragment', () => {
-    const dom = createElement([1, 2, undefined])
-    expect(dom.innerHTML).toBe(undefined)
-  })
 })

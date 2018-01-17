@@ -40,6 +40,7 @@ function createElement (
   } else if (isNullOrUndef(vnode) || (vnode as any) === false) {
     domNode = doc.createTextNode('')
   } else if (isArray(vnode)) {
+    console.log('fuckuyou')
     domNode = doc.createDocumentFragment()
     vnode.forEach((child) => {
       if (!isInvalid(child)) {
@@ -78,10 +79,10 @@ export function mountVNode (vnode: VNode, isSvg?: boolean, parentContext?, paren
   const children = vnode.children
   if (isArray(children)) {
     for (let i = 0, len = children.length; i < len; i++) {
-      mountChild(children[i] as VNode, domNode, parentContext, parentComponent, isSvg)
+      mountChild(children[i] as VNode, domNode, parentContext, isSvg, parentComponent)
     }
   } else {
-    mountChild(children as VNode, domNode, parentContext, parentComponent, isSvg)
+    mountChild(children as VNode, domNode, parentContext, isSvg, parentComponent)
   }
   vnode.dom = domNode
   if (vnode.ref !== null) {
@@ -90,12 +91,12 @@ export function mountVNode (vnode: VNode, isSvg?: boolean, parentContext?, paren
   return domNode
 }
 
-function mountChild (
+export function mountChild (
   child: VNode,
   domNode: Element,
   parentContext: Object,
-  parentComponent,
-  isSvg?: boolean
+  isSvg?: boolean,
+  parentComponent?
 ) {
   child.parentContext = parentContext || EMPTY_OBJ
   const childNode = createElement(child as VNode, isSvg, parentContext, parentComponent)

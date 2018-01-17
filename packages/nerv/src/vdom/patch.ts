@@ -7,7 +7,7 @@ import {
   isFunction,
   MapClass
 } from 'nerv-utils'
-import createElement from './create-element'
+import createElement, { mountChild } from './create-element'
 import {
   Props,
   isWidget,
@@ -87,8 +87,9 @@ function patchArrayChildren (
   const nextLength = nextChildren.length
   if (lastLength === 0) {
     if (nextLength > 0) {
-      const dom = createElement(nextChildren, isSvg, context)
-      parentDom.appendChild(dom as Node)
+      for (let index = 0; index < nextLength; index++) {
+        mountChild(nextChildren[index], parentDom, context, isSvg)
+      }
     }
   } else if (nextLength === 0) {
     unmountChildren(lastChildren, parentDom)
