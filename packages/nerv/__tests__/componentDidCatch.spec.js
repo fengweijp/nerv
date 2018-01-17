@@ -740,7 +740,6 @@ describe('ComponentDidCatch', () => {
     expect([...log[0]]).toEqual(['ErrorBoundary componentWillUnmount'])
   })
 
-  // @TODO: we call componentWillUnmount for now
   it('does not call componentWillUnmount when aborting initial mount', async () => {
     var container = document.createElement('div')
     render(

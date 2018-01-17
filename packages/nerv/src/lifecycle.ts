@@ -111,7 +111,6 @@ export function flushMount () {
   if (!readyComponents.length) {
     return
   }
-  // @TODO: perf
   const queue = readyComponents.slice(0)
   readyComponents.length = 0
   queue.forEach((item) => {

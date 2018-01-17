@@ -40,7 +40,6 @@ function createElement (
   } else if (isNullOrUndef(vnode) || (vnode as any) === false) {
     domNode = doc.createTextNode('')
   } else if (isArray(vnode)) {
-    console.log('fuckuyou')
     domNode = doc.createDocumentFragment()
     vnode.forEach((child) => {
       if (!isInvalid(child)) {

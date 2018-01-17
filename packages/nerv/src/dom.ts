@@ -39,7 +39,6 @@ export function unstable_renderSubtreeIntoContainer (
   container,
   callback
 ) {
-  // @TODO: should handle props.context?
   const wrapper = createElement(
     WrapperComponent,
     { context: parentComponent.context },
